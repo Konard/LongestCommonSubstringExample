@@ -1,2 +1,2 @@
 # LongestCommonSubstringExample
-Solution to longest common substring problem using LinksPlatform.
+Solution to the longest common substring problem using LinksPlatform.
