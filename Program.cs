@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Platform.Converters;
 using Platform.Data;
 using Platform.Data.Doublets;
-using Platform.Data.Doublets.ResizableDirectMemory.Generic;
-using Platform.Data.Doublets.Sequences;
+using Platform.Data.Doublets.Memory;
+using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Data.Doublets.Sequences.Converters;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
@@ -45,7 +45,7 @@ namespace LongestCommonSubstringExample
             // So the actual result is that we have 32768 maximum links and the same amount of external references.
             // With useAvlBasedIndex set to true, we would have only 1024 maximum links in the links' storage (cuts out 5 bits from address space). 
             // External references will be used to store unicode symbol codes.
-            using var disposableLinks = new ResizableDirectMemoryLinks<ushort>(memory, ResizableDirectMemoryLinks<ushort>.DefaultLinksSizeStep, constants, useAvlBasedIndex: false);
+            using var disposableLinks = new UnitedMemoryLinks<ushort>(memory, UnitedMemoryLinks<ushort>.DefaultLinksSizeStep, constants, IndexTreeType.SizedAndThreadedAVLBalancedTree);
             var links = disposableLinks.DecorateWithAutomaticUniquenessAndUsagesResolution();
 
             var addressToRawNumberConvert = new AddressToRawNumberConverter<ushort>();
